@@ -3,12 +3,13 @@ import axios from "axios";
 
 const NotDog = () => {
 
-    const [fact, setFact] = useState("Loading");
+    const [fact, setFact] = useState([]);
+
+//s?limit=10
 
     const newFact = () =>{
-        axios
-        .get("https://catfact.ninja/fact").then((result) => {
-            setFact(result.data.fact)
+        axios.get("https://catfact.ninja/facts?limit=20").then((result) => {
+            setFact(result.data.data)
         }).catch((err) => {
             console.log(err)
         });
@@ -17,8 +18,8 @@ const NotDog = () => {
     useEffect(newFact, [])
 
     return(<>
-        <h1>^ Not Dog ^</h1>
-        <p>{fact}</p>
+        <h1>^ Not Cat ^</h1>
+        <ol>{fact.map(f => <li>{f.fact}</li>)}</ol>
         <button onClick={newFact}>Gimmie Dog</button>
     </>)
     
