@@ -1,34 +1,39 @@
-import React from 'react';import image from "./pug.jpg";
+import React, { Fragment } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link
+} from "react-router-dom";
+import image from "./pug.jpg";
 import "./App.css"
 import Example from './components/stateExample';
-import DatabaseAccess from './components/databaseAccess';
-import Shopping from './components/subfolder/ProductManager';
-import NotDog from './components/apis/dogs';
+import Footer from "./components/old/footer";
+import Home from "./components/homePage";
+import Clock from "./components/old/clock";
+import PageThree from "./components/apis/params";
 
 function App() {
   return (
+    <Router>
 
-    <React.StrictMode>
-
-      {/* <Header/> */}
       <img src={image} className="puggly"></img><br/>
-      {/* <Clock/> */}
+      <nav>
+            <Link to="/"> Home </Link>
+            <Link to="/page2"> Clock </Link>
+            <Link to="/page3"> Users </Link>
+      </nav>
 
-      <NotDog/>
+      <Routes>
 
-      {/* <Shopping/>
-      <br/>
+        <Route path="/" element={<Home/>}></Route>
+        <Route path="/page2" element={<Clock/>}></Route>
+        <Route path="/page3" element={<p>Error: You need an id. (e.g /page3/5)</p>}></Route>
+        <Route path="/page3/:id" element={<PageThree/>}></Route>
 
-      <DatabaseAccess/>
-      <Example/> */}
+      </Routes>
 
-      {/* <Row age={20}/>
-      <Row name="hehehe!"/>
-      <Row name="ehr!"/> */}
-        
-    </React.StrictMode>
-
-  );
-}
+  </Router>
+)};
 
 export default App;
