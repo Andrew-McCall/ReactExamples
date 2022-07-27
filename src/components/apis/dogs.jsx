@@ -5,10 +5,8 @@ const NotDog = () => {
 
     const [fact, setFact] = useState([]);
 
-//s?limit=10
-
     const newFact = () =>{
-        axios.get("https://catfact.ninja/facts?limit=20").then((result) => {
+        axios.get("https://catfact.ninja/facts?limit=10").then((result) => {
             setFact(result.data.data)
         }).catch((err) => {
             console.log(err)
@@ -19,7 +17,7 @@ const NotDog = () => {
 
     return(<>
         <h1>^ Not Cat ^</h1>
-        <ol>{fact.map(f => <li>{f.fact}</li>)}</ol>
+        {fact.map((f,index) => <p key={index}>{f.fact}</p>)}
         <button onClick={newFact}>Gimmie Dog</button>
     </>)
     
