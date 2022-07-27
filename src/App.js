@@ -3,6 +3,7 @@ import "./App.css"
 import Example from './components/stateExample';
 import DatabaseAccess from './components/databaseAccess';
 import Shopping from './components/subfolder/ProductManager';
+import NotDog from './components/apis/dogs';
 
 function App() {
   return (
@@ -13,11 +14,13 @@ function App() {
       <img src={image} className="puggly"></img><br/>
       {/* <Clock/> */}
 
-      <Shopping/>
+      <NotDog/>
+
+      {/* <Shopping/>
       <br/>
 
       <DatabaseAccess/>
-      <Example/>
+      <Example/> */}
 
       {/* <Row age={20}/>
       <Row name="hehehe!"/>
