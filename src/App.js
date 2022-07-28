@@ -1,9 +1,10 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState,Nav } from "react";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   Link
+  
 } from "react-router-dom";
 import image from "./pug.jpg";
 import "./App.css"
@@ -15,24 +16,35 @@ import Users from "./components/apis/params";
 import Clicker from "./components/subfolder/userReducer";
 import MyContext from "./context";
 import Child from "./components/child";
-
+import Mapper from "./components/mapper";
+import Fact from "./components/fact";
 
 function App() {
 
-  // useReducer
-  const [getVar, setVar] = useState(0)
-
   return (
-    <>
-    <button onClick={(e) => setVar(getVar+1)}>Click</button>
-    <MyContext.Provider value={getVar}>
-    
-      <Child/> 
-      {/* two that use the var form usereudcer */}
+    <Router>
 
-    </MyContext.Provider>
-    
-    </>
+      <nav>
+        <Link to="/"> Home </Link>
+        <Link to="/users"> Users </Link>
+        <Link to="/contact"> Contact </Link>
+      </nav>
+
+      <Routes>
+
+        <Route exact path="/" element={<Home/>}></Route>
+        <Route path="/users">
+          <Route path="" element={"geger"}></Route>
+          <Route path=":id" element={<Fact fact="page twooo"/>}></Route>
+          <Route path=":id/:name" element={<Fact fact="two useParams"/>}></Route>
+        </Route>
+
+        <Route path="*" element={<h1>Error: 404</h1>}></Route>
+
+
+      </Routes>
+
+    </Router>
 )};
 
 export default App;
