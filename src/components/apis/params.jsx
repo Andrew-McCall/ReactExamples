@@ -1,23 +1,29 @@
 import { useNavigate , useParams } from "react-router-dom";
 
-const PageThree = () => {
+const Users = () => {
     const navigate = useNavigate();
     const { id  } = useParams();
     
-    const nextUrl = parseInt(id)+263
+    const nextUrl = parseInt(id)+3
 
     const click = (e) =>{
-        navigate(`/page3/${nextUrl}`)
+        navigate(`/users/${nextUrl}`)
     } 
 
-    return(
-        <>
-            <h1>Page3</h1>
-            <h3>{id}</h3>
-            <button type="button" onClick={click}> Checkout {nextUrl} </button>
-        </>
-    )
+    if (nextUrl<100){
+        return(
+            <>
+                <h1>Page3</h1>
+                <h3>{id}</h3>
+                <button type="button" onClick={click}> Checkout {nextUrl} </button>
+                {nextUrl%2 == 0 && <p>Even</p>}
+            </>
+        )
+    }else{
+        return(<p>"Error"</p>)
+    }
+    
 
 }
 
-export default PageThree
+export default Users
